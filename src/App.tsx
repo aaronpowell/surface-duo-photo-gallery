@@ -1,32 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import images, { Image } from "./images";
+import "./App.css";
+import Gallery from "./Gallery";
+import Details from "./DetailContainer";
+import Fold from "./Fold";
+import FullView from "./FullView";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  @media (screen-spanning: single-fold-vertical) {
+    flex-direction: row;
+  }
+
+  @media (screen-spanning: single-fold-horizontal) {
+    flex-direction: column-reverse;
+  }
+
+  @media (screen-spanning: none) {
+    flex-direction: row;
+  }
+`;
 
 function App() {
-  const [message, setMessage] = useState("");
-  useEffect(() => {
-    fetch("/api/get-message?name=Static Web Apps")
-    .then(res => res.text())
-    .then(data => setMessage(data));
-  }, []);
+  const [currentImage, setCurrentImage] = useState<Image>();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {message && <p>{message}</p>}
-      </header>
-    </div>
+    <Container>
+      <Gallery images={images} selectImage={setCurrentImage} />
+      <Fold id="foo" />
+      <Details currentImage={currentImage} />
+      <FullView
+        currentImage={currentImage}
+        closeImage={() => setCurrentImage(undefined)}
+        prevImage={(image) =>
+          setCurrentImage(images[images.indexOf(image) - 1])
+        }
+        nextImage={(image) =>
+          setCurrentImage(images[images.indexOf(image) + 1])
+        }
+      />
+    </Container>
   );
 }
 
