@@ -13,11 +13,6 @@ export const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  @media (screen-spanning: single-fold-horizontal),
-    (screen-spanning: single-fold-vertical) {
-    display: none;
-  }
 `;
 
 const Arrow = styled.div`
