@@ -5,29 +5,23 @@ import Gallery from "./Gallery";
 import Details from "./DetailContainer";
 import Fold from "./Fold";
 import FullView from "./FullView";
-import {
-  Foldable,
-  FoldableScreen,
-  useIsDualScreen,
-} from "@aaronpowell/react-foldable";
+import { Foldable, FoldableScreen } from "@aaronpowell/react-foldable";
 import { Container } from "./App.styles";
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>();
-  const isDualScreen = useIsDualScreen();
 
   return (
     <Container>
       <Gallery images={images} selectImage={setCurrentImage} />
       <Fold />
       <Foldable>
-        <FoldableScreen
-          matchScreen={1}
-          component={() => <Details currentImage={currentImage} />}
-        />
+        <FoldableScreen matchScreen={1}>
+          <Details currentImage={currentImage} />
+        </FoldableScreen>
       </Foldable>
 
-      {!isDualScreen && (
+      <FoldableScreen match={({ isDualScreen }) => isDualScreen}>
         <FullView
           currentImage={currentImage}
           closeImage={() => setCurrentImage(undefined)}
@@ -38,7 +32,7 @@ function App() {
             setCurrentImage(images[images.indexOf(image) + 1])
           }
         />
-      )}
+      </FoldableScreen>
     </Container>
   );
 }
