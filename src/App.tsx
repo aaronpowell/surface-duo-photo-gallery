@@ -19,20 +19,19 @@ function App() {
         <FoldableScreen matchScreen={1}>
           <Details currentImage={currentImage} />
         </FoldableScreen>
+        <FoldableScreen match={({ isDualScreen }) => !isDualScreen}>
+          <FullView
+            currentImage={currentImage}
+            closeImage={() => setCurrentImage(undefined)}
+            prevImage={(image) =>
+              setCurrentImage(images[images.indexOf(image) - 1])
+            }
+            nextImage={(image) =>
+              setCurrentImage(images[images.indexOf(image) + 1])
+            }
+          />
+        </FoldableScreen>
       </Foldable>
-
-      <FoldableScreen match={({ isDualScreen }) => isDualScreen}>
-        <FullView
-          currentImage={currentImage}
-          closeImage={() => setCurrentImage(undefined)}
-          prevImage={(image) =>
-            setCurrentImage(images[images.indexOf(image) - 1])
-          }
-          nextImage={(image) =>
-            setCurrentImage(images[images.indexOf(image) + 1])
-          }
-        />
-      </FoldableScreen>
     </Container>
   );
 }
