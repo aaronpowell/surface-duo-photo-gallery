@@ -5,24 +5,7 @@ import Gallery from "./Gallery";
 import Details from "./DetailContainer";
 import Fold from "./Fold";
 import FullView from "./FullView";
-import styled from "styled-components";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-
-  @media (screen-spanning: single-fold-vertical) {
-    flex-direction: row;
-  }
-
-  @media (screen-spanning: single-fold-horizontal) {
-    flex-direction: column-reverse;
-  }
-
-  @media (screen-spanning: none) {
-    flex-direction: row;
-  }
-`;
+import { Container } from "./App.styles";
 
 function App() {
   const [currentImage, setCurrentImage] = useState<Image>();
@@ -30,7 +13,7 @@ function App() {
   return (
     <Container>
       <Gallery images={images} selectImage={setCurrentImage} />
-      <Fold id="foo" />
+      <Fold />
       <Details currentImage={currentImage} />
       <FullView
         currentImage={currentImage}
