@@ -14,10 +14,12 @@ function App() {
   return (
     <Container>
       <Gallery images={images} selectImage={setCurrentImage} />
-      <Fold />
       <Foldable>
         <FoldableScreen matchScreen={1}>
-          <Details currentImage={currentImage} />
+          <>
+            <Fold />
+            <Details currentImage={currentImage} />
+          </>
         </FoldableScreen>
         <FoldableScreen match={({ isDualScreen }) => !isDualScreen}>
           <FullView
