@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container } from "./App.styles";
 import {
+  Container,
   ArrowLeft,
   ArrowRight,
   Close,
