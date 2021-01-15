@@ -14,13 +14,15 @@ function App() {
   return (
     <Container>
       <Gallery images={images} selectImage={setCurrentImage} />
+
       <Foldable>
         <FoldableScreen matchScreen={1}>
-          <>
+          <React.Fragment>
             <Fold />
             <Details currentImage={currentImage} />
-          </>
+          </React.Fragment>
         </FoldableScreen>
+
         <FoldableScreen match={({ isDualScreen }) => !isDualScreen}>
           <FullView
             currentImage={currentImage}
