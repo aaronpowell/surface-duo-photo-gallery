@@ -1,11 +1,23 @@
-# Azure Static Website React Template
+# Photo Gallery
 
-This repository contains a template for creating an [Azure Static Web App](https://docs.microsoft.com/azure/static-web-apps/?WT.mc_id=javascript-0000-aapowell) projects using React + TypeScript.
+This gallery contains a React implementation of the [Surface Duo Photo Gallery sample](https://github.com/foldable-devices/demos/tree/master/photo-gallery). The `main` branch contains an implementation that uses CSS to hide and show the various components, depending on the foldable state of the application, in the same way that the reference sample works. There is a secondary branch, `react-foldable` ([PR](https://github.com/aaronpowell/surface-duo-photo-gallery/pull/1)), that uses the npm package [`@aaronpowell/react-foldable`](https://www.npmjs.com/package/@aaronpowell/react-foldable) to use React components that adapt to the foldable state to add/remove themselves from the component hierarchy.
 
-In the template there is [Create React App](https://create-react-app.dev) site using TypeScript and an `api` folder with an empty [Azure Functions](https://docs.microsoft.com/azure/functions/?WT.mc_id=javascript-0000-aapowell), also using TypeScript.
+View the sample [here](https://kind-beach-0f1a1a11e.azurestaticapps.net/).
 
-To get started, click the **Use this template** button to create a repository from this template, and check out the [GitHub docs on using templates](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
+Read about how the sample works on the Surface Duo blog.
 
-## Running The Application
+## Contributing
 
-From a terminal run `npm start` from both the repository root and `api` folder to start the two servers, the web application will be on `http://localhost:3000` and the API on `http://localhost:7071`. Alternatively, you can use the VS Code launch of `Run full stack` to run both together with debuggers attached.
+Once the repo has been cloned install the npm package:
+
+```bash
+npm install
+```
+
+The codebase uses [create-react-app](https://create-react-app.dev) as the template and can be launched using npm:
+
+```bash
+npm start
+```
+
+If you make any changes, send them through as a Pull Request for review.
