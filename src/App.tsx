@@ -5,6 +5,7 @@ import Gallery from "./Gallery";
 import Details from "./DetailContainer";
 import Fold from "./Fold";
 import FullView from "./FullView";
+import { Foldable, FoldableScreen } from "@aaronpowell/react-foldable";
 import { Container } from "./App.styles";
 
 function App() {
@@ -13,18 +14,28 @@ function App() {
   return (
     <Container>
       <Gallery images={images} selectImage={setCurrentImage} />
-      <Fold />
-      <Details currentImage={currentImage} />
-      <FullView
-        currentImage={currentImage}
-        closeImage={() => setCurrentImage(undefined)}
-        prevImage={(image) =>
-          setCurrentImage(images[images.indexOf(image) - 1])
-        }
-        nextImage={(image) =>
-          setCurrentImage(images[images.indexOf(image) + 1])
-        }
-      />
+
+      <Foldable>
+        <FoldableScreen matchScreen={1}>
+          <React.Fragment>
+            <Fold />
+            <Details currentImage={currentImage} />
+          </React.Fragment>
+        </FoldableScreen>
+
+        <FoldableScreen match={({ isDualScreen }) => !isDualScreen}>
+          <FullView
+            currentImage={currentImage}
+            closeImage={() => setCurrentImage(undefined)}
+            prevImage={(image) =>
+              setCurrentImage(images[images.indexOf(image) - 1])
+            }
+            nextImage={(image) =>
+              setCurrentImage(images[images.indexOf(image) + 1])
+            }
+          />
+        </FoldableScreen>
+      </Foldable>
     </Container>
   );
 }

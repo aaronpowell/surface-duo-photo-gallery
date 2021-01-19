@@ -32,9 +32,4 @@ export const DetailContainer = styled.div`
     height: var(--zenbook-span2-height, env(fold-top));
     width: 100vw;
   }
-
-  @media (screen-spanning: none) {
-    height: 0vh;
-    width: 0vw;
-  }
 `;
